@@ -3,6 +3,12 @@
  * Имеет свойство URL, равно пустой строке.
  * */
 class Entity {
+  const xhr = new XMLHttpRequest();
+  xhr.onload = () => {
+    if (this.xhr.status = 200) {
+      const data = JSON.stringify(this.xhr.responseText);
+    }
+  }
   /**
    * Запрашивает с сервера список данных.
    * Это могут быть счета или доходы/расходы
