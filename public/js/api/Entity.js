@@ -1,8 +1,9 @@
 
 class Entity {
 
-  static URL = ''; //статическое свойство у всего класса, для всех экземпляров
-  // статические методы работают внутри класса, не у экземпляра
+  static URL = ''; 
+  /*статическое свойство у всего класса, для всех экземпляров
+   статические методы работают внутри класса, не у экземпляра*/
 
   static list(data, callback) {
     createRequest({
@@ -12,7 +13,6 @@ class Entity {
       callback
     });
   }
-
 
   static create(data, callback) {
     createRequest({
