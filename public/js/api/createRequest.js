@@ -6,7 +6,7 @@ const createRequest = (options = {}) => {
   const {
     url = '',
     data = {
-      //mail, password
+      //email, password
     },
     method = 'GET',
     callback = ( err, response ) => {},
@@ -17,13 +17,14 @@ const createRequest = (options = {}) => {
 
   let finalUrl = url;
   if (method === 'GET' && Object.keys(data).length > 0) {
-    const loginPassword = Object.entries(data); //[ ["login","JohnA"], ["password","30sfd"] ]
+    const loginPassword = Object.entries(data); //[ ["email","JohnA"], ["password","30sfd"] ]
     const keyValue = loginPassword.map(pair => `${encodeURIComponent(pair[0])}=${encodeURIComponent(pair[1])}`);
     const readyString = keyValue.join('&'); //склеиваем все ключи(name+value, password+value) data 
     finalUrl = `${url}${url.includes('?') ? '&' : '?'}${readyString}`;
   }
 
   xhr.open(method, finalUrl); 
+
   if (method!=='GET') {
     const formData = new FormData();
     for (const [key, value] of Object.entries(data)) {
@@ -36,7 +37,7 @@ const createRequest = (options = {}) => {
 
 
   xhr.onload = () => {
-    if (xhr.status >= 200 && xhr < 300) { //статусы на 2 - успех
+    if (xhr.status >= 200 && xhr.status < 300) { //статусы на 2 - успех
       callback (null, xhr.response); // без парсинга пока
     } else {
       callback ('ошибка запроса статус ' + xhr.status, null);
