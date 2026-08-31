@@ -22,10 +22,16 @@ class Sidebar {
    * при нажатии на кнопку .sidebar-toggle
    * */
   static initToggleButton() {
-    sidebarBurger.onclick = () => {
+
+    if (!sidebarBurger || !body) return;
+
+    sidebarBurger.addEventListener('click',(e) => {
+
+      e.preventDefault(); //Отменяем стандартное поведение ссылки
+
       body.classList.toggle('sidebar-open');
       body.classList.toggle('sidebar-collapse');
-    }
+    });  
   }
 
   /**
