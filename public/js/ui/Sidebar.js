@@ -3,6 +3,10 @@
  * кнопки скрытия/показа колонки в мобильной версии сайта
  * и за кнопки меню
  * */
+
+const sidebarBurger = document.querySelector('.sidebar-toggle');
+const body = document.getElementsByTagName('body')[0];
+
 class Sidebar {
   /**
    * Запускает initAuthLinks и initToggleButton
@@ -18,7 +22,10 @@ class Sidebar {
    * при нажатии на кнопку .sidebar-toggle
    * */
   static initToggleButton() {
-
+    sidebarBurger.onclick = () => {
+      body.classList.toggle('sidebar-open');
+      body.classList.toggle('sidebar-collapse');
+    }
   }
 
   /**
