@@ -42,6 +42,8 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
-
+menu-item_login
+menu-item_register
+menu-item_logout
   }
 }
