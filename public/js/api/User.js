@@ -1,4 +1,4 @@
-const { json, response } = require("express");
+//const { json, response } = require("express");
 
 class User {
 
@@ -21,10 +21,10 @@ class User {
     const findUser = localStorage.getItem('user');
     if (findUser) {
       try {
-return JSON.parse(findUser); //str-> obj
+        return JSON.parse(findUser); //str-> obj
       }
       catch (e) {
-return undefined;
+        return undefined;
       }
     } else {
       return undefined;
