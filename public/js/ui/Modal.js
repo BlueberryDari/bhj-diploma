@@ -2,7 +2,7 @@ class Modal {
 
   constructor(element){
     if (!element) {
-      throw new Errow('Пустой элемент в Modal');
+      throw new Error('Пустой элемент в Modal');
     }
 
     this.element = element;
@@ -17,10 +17,8 @@ class Modal {
   }
 
   onClose(e) {
-    if (e) {
-      e.preventDefault();
-    }
-    this.close();
+   e.preventDefault();
+   this.close();
    }
   
   open() {

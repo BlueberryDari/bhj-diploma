@@ -24,15 +24,12 @@ class CreateTransactionForm extends AsyncForm {
     Transaction.create(data, (response) => {
       if (response && response.success) {
         const modalEl = this.element.closest('.modal');
-        if (modalEl) {
-          const modalWindow = App.getModal(modalEl.id);
-          if (modalWindow) {
-            Modal.close(modalWindow);
-          }
-        }
+        const modalNeeded = Object.keys(App.modals).find(key => App.modals[key].element === modalEl);
+        App.getModal(modalNeeded).close(); 
+        /*т. к. у нас 2 типа операций - расход и доход, нужно найти нужную   */
+
         this.reset();
         App.update();
-
       }
     });
   }
