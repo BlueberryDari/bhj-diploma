@@ -1,7 +1,3 @@
-/**
- * Основная функция для совершения запросов
- * на сервер.
- * */
 const createRequest = (options = {}) => {
   const {
     url = '',
@@ -9,39 +5,35 @@ const createRequest = (options = {}) => {
       //email, password
     },
     method = 'GET',
-    callback = ( err, response ) => {},
+    callback = (err, response) => { },
   } = options; //деструктуризация объекта, распаковывает св-ва в отдельные переменные
 
   const xhr = new XMLHttpRequest();
   xhr.responseType = 'json';
 
   let finalUrl = url;
-  if (method === 'GET' && Object.keys(data).length > 0) {
-    const loginPassword = Object.entries(data); //[ ["email","JohnA"], ["password","30sfd"] ]
-    const keyValue = loginPassword.map(pair => `${encodeURIComponent(pair[0])}=${encodeURIComponent(pair[1])}`);
-    const readyString = keyValue.join('&'); //склеиваем все ключи(name+value, password+value) data 
-    finalUrl = `${url}${url.includes('?') ? '&' : '?'}${readyString}`;
+  let body = null;
+
+  if (method === 'GET') {
+    const params = new URLSearchParams(data); //класс, API, сам кодирует ключ, знач для ссылки
+    finalUrl = `${url}${url.includes('?') ? '&' : '?'}${params}`;
+  } else {
+    body = new FormData();
+    for (const [key, value] of Object.entries(data)) {
+      body.append(key, value);
+    }
   }
 
-  xhr.open(method, finalUrl); 
-
-  if (method!=='GET') {
-    const formData = new FormData();
-    for (const [key, value] of Object.entries(data)) {
-      formData.append(key, value);
-    } 
-    xhr.send(formData); //если метод не GET, отправляем formData
-  } else {
-      xhr.send();
-  };
-
+  try {
+    xhr.open(method, finalUrl);
+    xhr.send(body);
+  } catch (e) {
+    callback(e);
+  } //пытаемся отправить запрос на сервер, перехватываем ошибку
 
   xhr.onload = () => {
-    if (xhr.status >= 200 && xhr.status < 300) { //статусы на 2 - успех
-      callback (null, xhr.response); // без парсинга пока
-    } else {
-      callback ('ошибка запроса статус ' + xhr.status, null);
-    }
+
+    callback(null, xhr.response);
   };
 
   xhr.onerror = () => {
