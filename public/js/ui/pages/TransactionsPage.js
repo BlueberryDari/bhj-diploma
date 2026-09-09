@@ -145,17 +145,12 @@ class TransactionsPage {
 
   renderTransactions(data) {
     const contentEl = this.element.querySelector('.content');
-    if (!contentEl) {
-      return;
-    }
-
+ 
     contentEl.innerHTML = '';
-
-    if (data && data.length > 0) {
+    
       data.forEach(item => {
         const html = this.getTransactionHTML(item);
         contentEl.insertAdjacentHTML('beforeend', html);
       });
-    }
   }
 }
