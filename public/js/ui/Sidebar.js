@@ -33,9 +33,7 @@ class Sidebar {
     loginBtn.addEventListener('click', (e) => {
       e.preventDefault();
 
-      const loginModal = document.getElementById('modal-login');
-      const modalWindow = App.getModal(loginModal);
-
+      const modalWindow = App.getModal('login');
       Modal.open(modalWindow);
     })
 
@@ -43,9 +41,7 @@ class Sidebar {
     registerBtn.addEventListener('click', (e) => {
       e.preventDefault();
 
-      const registerModal = document.getElementById('modal-register');
-      const modalWindow = App.getModal(registerModal);
-
+      const modalWindow = App.getModal('register');
       Modal.open(modalWindow);
     })
 
