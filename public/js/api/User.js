@@ -17,18 +17,7 @@ class User {
   }
 
   static current() {
-
-    const findUser = localStorage.getItem('user');
-    if (findUser) {
-      try {
-        return JSON.parse(findUser); //str-> obj
-      }
-      catch (e) {
-        return undefined;
-      }
-    } else {
-      return undefined;
-    }
+    return JSON.parse(localStorage.getItem('user')); //str-> obj
   }
 
   static fetch(callback) {
