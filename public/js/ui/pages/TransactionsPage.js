@@ -97,20 +97,21 @@ class TransactionsPage {
   }
 
   formatDate(date) {
-    const months = [
-      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
-    ];
-
+ 
     // "2019-03-10 03:20:41" → Date
-    const parsed = new Date(date.replace(' ', 'T'));
-    const day = parsed.getDate();
-    const month = months[parsed.getMonth()];
-    const year = parsed.getFullYear();
-    const hours = String(parsed.getHours()).padStart(2, '0');
-    const minutes = String(parsed.getMinutes()).padStart(2, '0');
+    const parsed = new Date(date.replace(' ', 'T')); //приводим к стандарту записи
+    const dateSettings = new Intl.DateTimeFormat('ru-RU', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
 
-    return `${day} ${month} ${year} г. в ${hours}:${minutes}`;
+    const timeSettings = new Intl.DateTimeFormat('ru-RU', {
+      hour:'2-digit',
+      minute: '2-digit'
+    })
+
+    return `${dateSettings.format(parsed)} в ${timeSettings.format(parsed)}`;
   }
 
   getTransactionHTML(item) {
