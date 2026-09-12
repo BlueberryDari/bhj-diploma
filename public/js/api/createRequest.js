@@ -28,7 +28,7 @@ const createRequest = (options = {}) => {
     xhr.open(method, finalUrl);
     xhr.send(body);
   } catch (e) {
-    callback(e);
+    callback(e, null);
   } //пытаемся отправить запрос на сервер, перехватываем ошибку
 
   xhr.onload = () => {

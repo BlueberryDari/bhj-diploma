@@ -1,7 +1,7 @@
 
 class Entity {
 
-  static URL = ''; 
+  static URL = '';
   /*статическое свойство у всего класса, для всех экземпляров
    статические методы работают внутри класса, не у экземпляра*/
 
@@ -10,7 +10,13 @@ class Entity {
       url: this.URL,
       data: data,
       method: 'GET',
-      callback
+      callback: (err, response) => {
+        if (err) {
+          callback(err, null);
+          return;
+        }
+        callback(null, response);
+      }
     });
   }
 
@@ -19,7 +25,13 @@ class Entity {
       url: this.URL,
       data: data,
       method: 'PUT',
-      callback
+      callback: (err, response) => {
+        if (err) {
+          callback(err, null);
+          return;
+        }
+        callback(null, response);
+      }
     });
   }
 
@@ -28,7 +40,13 @@ class Entity {
       url: this.URL,
       data: data,
       method: 'DELETE',
-      callback
+      callback: (err, response) => {
+        if (err) {
+          callback(err, null);
+          return;
+        }
+        callback(null, response);
+      }
     });
   }
 }

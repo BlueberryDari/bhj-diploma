@@ -1,3 +1,4 @@
+const { response } = require("express");
 
 class Account extends Entity {
 
@@ -16,7 +17,13 @@ class Account extends Entity {
       url: url,
       data: {},
       method: 'GET',
-      callback: callback
+      callback: (err, response) => {
+        if (err) {
+          callback(err, null);
+          return;
+        }
+        callback(null, response);
+      }
     })
   };
 }

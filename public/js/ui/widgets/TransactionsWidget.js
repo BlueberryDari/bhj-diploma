@@ -14,12 +14,12 @@ class TransactionsWidget {
     const createIncomeBtn = this.element.querySelector('.create-income-button');
     createIncomeBtn.addEventListener('click', () => {
       const modalWindow = App.getModal('newIncome');
-      Modal.open(modalWindow);
+      modalWindow.open();
     });
     const createExpenseBtn = this.element.querySelector('.create-expense-button');
     createExpenseBtn.addEventListener('click', () => {
       const modalWindow = App.getModal('newExpense');
-      Modal.open(modalWindow);
+      modalWindow.open();
     });
   }
 }

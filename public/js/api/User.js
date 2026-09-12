@@ -26,12 +26,16 @@ class User {
       data: {},
       method: 'GET',
       callback: (err, response) => {
+        if (err) {
+          callback(err, null);
+          return;
+        }
         if (response && response.success && response.user) {
           this.setCurrent(response.user);
         } else if (response && !response.success) {
           this.unsetCurrent();
         }
-        callback(err, response);
+        callback(null, response);
       }
     });
   }
@@ -42,10 +46,14 @@ class User {
       method: 'POST',
       data: data,
       callback: (err, response) => {
+        if (err) {
+          callback(err, null);
+          return;
+        }
         if (response && response.success && response.user) {
           this.setCurrent(response.user);
         }
-        callback(err, response);
+        callback(null, response);
       }
     });
   }
@@ -56,10 +64,14 @@ class User {
       data: data,
       method: 'POST',
       callback: (err, response) => {
+        if (err) {
+          callback(err, null);
+          return;
+        }
         if (response && response.success && response.user) {
           this.setCurrent(response.user);
         }
-        callback(err, response);
+        callback(null, response);
       }
     });
   }
@@ -70,10 +82,14 @@ class User {
       data: {},
       method: 'POST',
       callback: (err, response) => {
+        if (err) {
+          callback(err, null);
+          return;
+        }
         if (response && response.success) {
           this.unsetCurrent();
         }
-        callback(err, response);
+        callback(null, response);
       }
     });
   }

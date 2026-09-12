@@ -34,7 +34,7 @@ class Sidebar {
       e.preventDefault();
 
       const modalWindow = App.getModal('login');
-      Modal.open(modalWindow);
+      modalWindow.open();
     })
 
     const registerBtn = menu.getElementsByClassName('menu-item_register')[0];
@@ -42,7 +42,7 @@ class Sidebar {
       e.preventDefault();
 
       const modalWindow = App.getModal('register');
-      Modal.open(modalWindow);
+      modalWindow.open();
     })
 
     const logoutBtn = menu.getElementsByClassName('menu-item_logout')[0];
